@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Preguntas{% endblock %}
+{% block body %}
+
+      <div class="row justify-content-md-center m-5">
+        <div class="mb-3 col-lg-6">
+            <form method="POST">
+                 {% csrf_token %}
+                {% for key, value in data.items%}
+                    {{key}}<br>
+                    <select name="{{forloop.counter}}">
+                        {% for opcion in value %}
+                            <option value="{{ opcion.id }}">{{ opcion.opcion }}</option>
+                        {% endfor %}
+                    </select>
+
+                <br><br>
+                {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            </div>
+          </div>
+{% endblock %}
+

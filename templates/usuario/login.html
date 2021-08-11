@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Login{% endblock %}
+{% block body %}
+
+      <div class="row justify-content-md-center m-5">
+        <div class="mb-3 col-lg-6">
+            <form method="post">
+                {% csrf_token %}
+              <div class="mb-3">
+                <label for="username" class="form-label">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="password" id="password">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+      </div>
+
+      {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+                Su nombre de usuario y contraseña no coinciden. Por favor revise los datos ingresados e intente nuevamente.
+      </div>
+      {% endif %}
+
+    <a href="/registro" class="btn btn-primary">Registrar usuario</a>
+
+{% endblock %}
