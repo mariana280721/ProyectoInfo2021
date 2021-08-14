@@ -7,9 +7,10 @@
             <form method="POST">
                  {% csrf_token %}
                 {% for key, value in data.items%}
-                    {{key}}<br>
+                    <div class="alert alert-primary" role="alert">{{key}}</div>
+                {{value.categoria}}<br>
                     <select name="{{forloop.counter}}">
-                        {% for opcion in value %}
+                        {% for opcion in value.opciones %}
                             <option value="{{ opcion.id }}">{{ opcion.opcion }}</option>
                         {% endfor %}
                     </select>

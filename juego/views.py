@@ -5,7 +5,7 @@ from .models import Pregunta, Respuesta, Partida
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
-
+from .models import Categoria
 # Create your views here.
 @login_required(login_url='/login')
 def listar_preguntas(request):
@@ -21,7 +21,9 @@ def listar_preguntas(request):
         preguntas = Pregunta.objects.all().order_by('?')[:2]
         for item in preguntas:
             respuestas = Respuesta.objects.filter(id_pregunta= item.id)
-            data[item.pregunta]= respuestas
+            categoria = Categoria.objects.get(pk=item.id_categoria.id)
+            #{pregunta: {opciones: [opcion1, opcion2, opcionn], categoria: categoria}
+            data[item.pregunta]= {'opciones': respuestas, 'categoria': categoria}
         return render(request, 'juego/listar_preguntas.html', {"preguntas": preguntas, "data": data})
 
 
