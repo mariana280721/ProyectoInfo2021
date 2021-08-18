@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vt51imvxzio7bnpl$mug47pwegj-^f3p(d(9l8my)&nh)lseek
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['proyectoinfo2021.herokuapp.com', '127.0.0.1:8000', 'proyectoinformatorio2021.herokuapp.com']
+ALLOWED_HOSTS = ['proyectoinfo2021.herokuapp.com', '127.0.0.1', 'proyectoinformatorio2021.herokuapp.com']
 
 # Application definition
 
@@ -69,17 +69,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ProyectoInfo.wsgi.application'
-DISABLE_COLLECTSTATIC=1
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+import dj_database_url
+import psycopg2
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
