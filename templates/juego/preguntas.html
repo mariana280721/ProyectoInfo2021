@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}Proyecto Info{% endblock %}
+{% block body %}
+    <div class="row justify-content-md-center m-5">
+        <div class="mb-3 col-lg-6">
+                {% for pregunta in preguntas%}
+                 <div class="alert alert-primary" role="alert">
+                     {{pregunta}}
+                <a class="btn btn-primary" href="{% url 'juego:detalle_pregunta' pregunta.pk %}">Detalle</a>
+                <a class="btn btn-danger" href="{% url 'juego:eliminar' pregunta.pk %}">Eliminar</a>
+                 </div>
+                {% endfor %}
+        </div>
+     </div>
+{% endblock %}

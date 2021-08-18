@@ -1,8 +1,9 @@
 from django import forms
-from .models import Respuesta
+from .models import Pregunta
 
 class PreguntaForm(forms.ModelForm):
 
     class Meta:
-        model = Respuesta
-        fields = ('id_pregunta', 'opcion', 'puntaje')
+        model = Pregunta
+        fields = ('pregunta','id_categoria')
+

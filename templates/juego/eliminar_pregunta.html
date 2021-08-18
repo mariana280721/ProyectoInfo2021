@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block titulo %}Proyecto Info{% endblock %}
+{% block body %}
+    <h2>Detalle pregunta</h2>
+    {{pregunta.autor}}
+    <br>
+    {{pregunta.pregunta}}
+    <br>
+    {{pregunta.fecha_creacion}}
+<a class="btn btn-default" href="{% url 'juego:detalle_pregunta' pregunta.pk %}">Cancelar</a>
+<a class="btn btn-default" href="{% url 'juego:confirmar_eliminacion' pregunta.pk %}">Confirmar</a>
+
+{% endblock %}
